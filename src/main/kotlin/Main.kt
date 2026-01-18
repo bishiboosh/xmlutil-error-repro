@@ -17,14 +17,15 @@ fun main(args: Array<String>) {
     DefaultXml.decodeFromSource<MavenInfo>(xmlFileStream!!.asSource().buffered())
 }
 
-val DefaultXml = XML {
-    defaultPolicy {
+val DefaultXml = XML.recommended {
+    policy {
+        autoPolymorphic = false
         ignoreUnknownChildren()
         encodeDefault = XmlSerializationPolicy.XmlEncodeDefault.NEVER
     }
     repairNamespaces = true
     xmlDeclMode = XmlDeclMode.None
-    autoPolymorphic = false
+    defaultToGenericParser = true
 }
 
 @Serializable
