@@ -12,9 +12,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
         java-version: ['17', '21']
         java-distribution: ['temurin', 'zulu', 'adopt']
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
