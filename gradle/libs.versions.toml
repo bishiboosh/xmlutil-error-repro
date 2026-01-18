@@ -3,6 +3,7 @@ junit = "4.13.2"
 kotlin = "2.3.0"
 xml-serialization = "1.0.0-rc1"
 kotlinx-serialization = "1.9.0"
+kotlinx-io = "0.8.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -12,6 +13,9 @@ kotlinx-serialization-xml = { module = "io.github.pdvrieze.xmlutil:serialization
 kotlinx-serialization-xml-io = { module = "io.github.pdvrieze.xmlutil:serialization-io", version.ref = "xml-serialization" }
 xmlutil-core-io = { module = "io.github.pdvrieze.xmlutil:core-io", version.ref = "xml-serialization" }
 test-parameter-injector = "com.google.testparameterinjector:test-parameter-injector:1.20"
+kotlinx-io-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-io" }
+kotlinx-io-okio = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-okio", version.ref = "kotlinx-io" }
+okhttp = "com.squareup.okhttp3:okhttp:5.3.2"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

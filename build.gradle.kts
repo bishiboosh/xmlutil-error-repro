@@ -11,6 +11,9 @@ dependencies {
     implementation(libs.kotlinx.serialization.xml)
     implementation(libs.kotlinx.serialization.xml.io)
     implementation(libs.xmlutil.core.io)
+    implementation(libs.kotlinx.io.core)
+    implementation(libs.kotlinx.io.okio)
+    implementation(libs.okhttp)
     testImplementation(kotlin("test"))
 }
 

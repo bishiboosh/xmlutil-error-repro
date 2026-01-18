@@ -1,5 +1,5 @@
-import kotlinx.io.asSource
 import kotlinx.io.buffered
+import kotlinx.io.okio.asKotlinxIoRawSource
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.devrieze.xmlutil.serialization.kxio.decodeFromSource
@@ -8,13 +8,23 @@ import nl.adaptivity.xmlutil.serialization.XML
 import nl.adaptivity.xmlutil.serialization.XmlChildrenName
 import nl.adaptivity.xmlutil.serialization.XmlElement
 import nl.adaptivity.xmlutil.serialization.XmlSerializationPolicy
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 fun main(args: Array<String>) {
-    val xmlFileStream = Thread
-        .currentThread()
-        .contextClassLoader
-        .getResourceAsStream("htmlunit-4.21.0.pom")
-    DefaultXml.decodeFromSource<MavenInfo>(xmlFileStream!!.asSource().buffered())
+    OkHttpClient()
+        .newCall(
+            Request
+                .Builder()
+                .url("https://repo.maven.apache.org/maven2/org/htmlunit/htmlunit/4.21.0/htmlunit-4.21.0.pom")
+                .build()
+        )
+        .execute()
+        .body
+        .source()
+        .asKotlinxIoRawSource()
+        .buffered()
+        .use { source -> DefaultXml.decodeFromSource<MavenInfo>(source) }
 }
 
 val DefaultXml = XML.recommended {
